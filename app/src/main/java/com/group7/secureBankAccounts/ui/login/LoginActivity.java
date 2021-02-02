@@ -1,6 +1,7 @@
 package com.group7.secureBankAccounts.ui.login;
 
 
+import android.content.Intent;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Build;
 import android.os.Bundle;
@@ -16,6 +17,7 @@ import com.group7.secureBankAccounts.R;
 import com.group7.secureBankAccounts.data.model.Cipher;
 import com.group7.secureBankAccounts.data.model.Users;
 import com.group7.secureBankAccounts.dataBase.UsersDao;
+import com.group7.secureBankAccounts.ui.home.HomeActivity;
 
 import java.security.NoSuchAlgorithmException;
 import java.security.spec.InvalidKeySpecException;
@@ -50,7 +52,18 @@ public class LoginActivity extends AppCompatActivity {
         if (user == null) {
 
         } else {
-            Log.d("lol", String.valueOf(Cipher.validatePassword(password, user.getPassword())));
+            if(Cipher.validatePassword(password, user.getPassword())){
+                Intent intent = new Intent(this, HomeActivity.class);
+                intent.putExtra("firstName",firstName);
+                intent.putExtra("lastName",lastName);
+                intent.putExtra("id",user.getId());
+                startActivity(intent);
+
+            }
+            else{
+
+            }
+
         }
 
 

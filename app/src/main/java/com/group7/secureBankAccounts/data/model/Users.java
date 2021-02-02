@@ -10,6 +10,7 @@ import com.group7.secureBankAccounts.ApiRequest.ApiInterface;
 import org.jetbrains.annotations.NotNull;
 
 
+import java.io.Serializable;
 import java.util.List;
 import java.util.Objects;
 import java.util.concurrent.Executor;
@@ -19,7 +20,7 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class Users {
+public class Users implements Serializable {
 
     private String userName;
     private String lastName;
@@ -33,6 +34,13 @@ public class Users {
         this.lastName = lastName;
         this.id = id;
         this.password = password;
+    }
+
+    public Users(String userName, String lastName, int id, List<BankAccount> allBankAccount) {
+        this.userName = userName;
+        this.lastName = lastName;
+        this.id = id;
+        this.allBankAccount = allBankAccount;
     }
 
     @Override

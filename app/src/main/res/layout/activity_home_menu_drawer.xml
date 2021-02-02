@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:showIn="navigation_view">
+
+
+    <item>
+
+        <menu>
+
+            <group android:checkableBehavior="single">
+
+                <item
+                    android:id="@+id/fragment_all_account"
+                    android:icon="@drawable/ic_baseline_home_24"
+                    android:title="Accueil" />
+
+                <item
+                    android:id="@+id/fragment_transfer"
+                    android:icon="@drawable/ic_round_compare_arrows_24"
+                    android:title="Virement" />
+
+
+            </group>
+        </menu>
+    </item>
+
+</menu>

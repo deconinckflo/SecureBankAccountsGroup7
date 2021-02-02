@@ -5,15 +5,18 @@ public class BankAccount {
     private double amount;
     private String account_name;
     private String currency;
+    private String iban;
 
-    public BankAccount(int _id, double amount, String account_name, String currency) {
+
+    public BankAccount() {
+    }
+
+    public BankAccount(int _id, double amount, String account_name, String currency, String iban) {
         this._id = _id;
         this.amount = amount;
         this.account_name = account_name;
         this.currency = currency;
-    }
-
-    public BankAccount() {
+        this.iban = iban;
     }
 
     public int get_id() {
@@ -56,5 +59,13 @@ public class BankAccount {
                 ", account_name='" + account_name + '\'' +
                 ", currency='" + currency + '\'' +
                 '}';
+    }
+
+    public String getIban() {
+        return iban;
+    }
+
+    public void setIban(String iban) {
+        this.iban = iban;
     }
 }
