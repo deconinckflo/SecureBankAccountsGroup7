@@ -1,8 +1,10 @@
 package com.group7.secureBankAccounts.data.model;
 
+import java.math.BigDecimal;
+
 public class BankAccount {
     private int _id;
-    private double amount;
+    private BigDecimal amount;
     private String account_name;
     private String currency;
     private String iban;
@@ -11,7 +13,7 @@ public class BankAccount {
     public BankAccount() {
     }
 
-    public BankAccount(int _id, double amount, String account_name, String currency, String iban) {
+    public BankAccount(int _id, BigDecimal amount, String account_name, String currency, String iban) {
         this._id = _id;
         this.amount = amount;
         this.account_name = account_name;
@@ -27,13 +29,7 @@ public class BankAccount {
         this._id = _id;
     }
 
-    public double getAmount() {
-        return amount;
-    }
 
-    public void setAmount(double amount) {
-        this.amount = amount;
-    }
 
     public String getAccount_name() {
         return account_name;
@@ -67,5 +63,13 @@ public class BankAccount {
 
     public void setIban(String iban) {
         this.iban = iban;
+    }
+
+    public void setAmount(BigDecimal amount) {
+        this.amount = amount;
+    }
+
+    public BigDecimal getAmount() {
+        return amount;
     }
 }

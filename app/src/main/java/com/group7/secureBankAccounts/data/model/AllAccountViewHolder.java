@@ -22,6 +22,8 @@ public class AllAccountViewHolder extends RecyclerView.ViewHolder {
     }
 
     public void update(BankAccount bank){
+
+
         this.name.setText(bank.getAccount_name());
         this.amount.setText(String.valueOf(bank.getAmount()) + " " + bank.getCurrency());
         this.iban.setText(bank.getIban());

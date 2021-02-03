@@ -91,7 +91,7 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
                             JsonObject obj = res.get(i).getAsJsonObject();
                             allBankAccount.add(new BankAccount(
                                     obj.get("id").getAsInt(),
-                                    obj.get("amount").getAsDouble(),
+                                     obj.get("amount").getAsBigDecimal(),
                                     obj.get("account_name").getAsString(),
                                     obj.get("currency").getAsString(),
                                     obj.get("iban").getAsString()));
