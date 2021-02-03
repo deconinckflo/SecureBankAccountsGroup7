@@ -122,7 +122,7 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
     }
 
     public void setupFragment(){
-        Log.d("lol",this.user.toString());
+
         setContentView(R.layout.activity_home);
         this.toolbar = (Toolbar) findViewById(R.id.activity_main_toolbar);
 
