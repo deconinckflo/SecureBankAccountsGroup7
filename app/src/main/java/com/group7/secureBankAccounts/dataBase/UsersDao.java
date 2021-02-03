@@ -27,17 +27,24 @@ public class UsersDao {
         UsersDbHelper dbHelper = new UsersDbHelper(c);
         SQLiteDatabase db = dbHelper.getWritableDatabase();
         Cursor dbCursor = db.query(Variable.TABLE_NAME,
-                new String[]{Variable.COLUMN_NAME_FIRST_NAME, Variable.COLUMN_NAME_LAST_NAME,Variable.COLUMN_NAME_PASSWORD},
+                new String[]{Variable.COLUMN_NAME_FIRST_NAME, Variable.COLUMN_NAME_LAST_NAME, Variable.COLUMN_NAME_PASSWORD},
                 Variable._ID + "= ?",
                 new String[]{id.toString()}, null, null, null);
+
+        String firstName;
+        String lastName;
+        String password;
         if (!dbCursor.moveToFirst()) {
             return null;
-        }  else {
-            String firstName = dbCursor.getString(dbCursor.getColumnIndex(Variable.COLUMN_NAME_FIRST_NAME));
-            String lastName = dbCursor.getString(dbCursor.getColumnIndex(Variable.COLUMN_NAME_FIRST_NAME));
-            String password = dbCursor.getString(dbCursor.getColumnIndex(Variable.COLUMN_NAME_PASSWORD));
-            return new Users(firstName, lastName, id,  password);
+        } else {
+            firstName = dbCursor.getString(dbCursor.getColumnIndex(Variable.COLUMN_NAME_FIRST_NAME));
+            lastName = dbCursor.getString(dbCursor.getColumnIndex(Variable.COLUMN_NAME_FIRST_NAME));
+            password = dbCursor.getString(dbCursor.getColumnIndex(Variable.COLUMN_NAME_PASSWORD));
         }
+
+        return new Users(firstName, lastName, id, password);
+
+
     }
 
     public void insertUsers(Context c, String firstName, String lastName, String hash) {
@@ -53,16 +60,13 @@ public class UsersDao {
     }
 
 
-
-
-
-    public Users getUserByFirstNameAndLastName(Context c, String firstName , String lastName) {
+    public Users getUserByFirstNameAndLastName(Context c, String firstName, String lastName) {
         UsersDbHelper dbHelper = new UsersDbHelper(c);
         SQLiteDatabase db = dbHelper.getWritableDatabase();
         Cursor dbCursor = db.query(Variable.TABLE_NAME,
                 new String[]{Variable._ID, Variable.COLUMN_NAME_PASSWORD},
-                Variable.COLUMN_NAME_FIRST_NAME + "= ? AND "+Variable.COLUMN_NAME_LAST_NAME + "= ?",
-                new String[]{firstName,lastName}, null, null, null);
+                Variable.COLUMN_NAME_FIRST_NAME + "= ? AND " + Variable.COLUMN_NAME_LAST_NAME + "= ?",
+                new String[]{firstName, lastName}, null, null, null);
 
 
         if (!dbCursor.moveToFirst()) {
@@ -70,7 +74,7 @@ public class UsersDao {
         } else {
             String password = dbCursor.getString(dbCursor.getColumnIndex(Variable.COLUMN_NAME_PASSWORD));
             Integer id = dbCursor.getInt(dbCursor.getColumnIndex(Variable._ID));
-            return new Users(firstName, lastName, id,  password);
+            return new Users(firstName, lastName, id, password);
         }
     }
 }
