@@ -18,6 +18,7 @@ import com.group7.secureBankAccounts.data.model.Cipher;
 import com.group7.secureBankAccounts.data.model.Users;
 import com.group7.secureBankAccounts.dataBase.UsersDao;
 import com.group7.secureBankAccounts.ui.home.HomeActivity;
+import com.pranavpandey.android.dynamic.toasts.DynamicToast;
 
 import java.security.NoSuchAlgorithmException;
 import java.security.spec.InvalidKeySpecException;
@@ -49,8 +50,8 @@ public class LoginActivity extends AppCompatActivity {
         UsersDao usersDao = new UsersDao();
 
         Users user = usersDao.getUserByFirstNameAndLastName(this, firstName, lastName);
-        if (user == null) {
-
+        if (user == null || password.equals("") ) {
+            DynamicToast.makeError(getBaseContext(),"Identifiant ou mot de passe incorrect", 1000).show();
         } else {
             if(Cipher.validatePassword(password, user.getPassword())){
                 Intent intent = new Intent(this, HomeActivity.class);
@@ -61,7 +62,7 @@ public class LoginActivity extends AppCompatActivity {
 
             }
             else{
-
+                DynamicToast.makeError(getBaseContext(),"Identifiant ou mot de passe incorrect", 1000).show();
             }
 
         }

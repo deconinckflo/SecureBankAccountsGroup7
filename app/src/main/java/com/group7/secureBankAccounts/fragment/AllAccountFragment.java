@@ -25,14 +25,18 @@ public class AllAccountFragment extends Fragment {
 
     private RecyclerView recyclerView;
 
-    private Button resfreshButton;
 
     private AllAccountAdapter adapter;
 
+    private Users user;
 
 
 
-
+    public void refresh(Users a){
+        user =a;
+        adapter.setAllBankAccount(user.getAllBankAccount());
+        adapter.notifyDataSetChanged();
+    }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -40,26 +44,10 @@ public class AllAccountFragment extends Fragment {
 
 
 
-
-
-
         Bundle args = getArguments();
-        Users user = (Users) args.getSerializable("User");
+        user = (Users) args.getSerializable("User");
         recyclerView = v.findViewById(R.id.recycler_view_all_account);
-
-
         this.adapter = new AllAccountAdapter(user.getAllBankAccount());
-        this.resfreshButton = (Button) v.findViewById(R.id.buttonRefresh);
-
-        resfreshButton.setOnClickListener(new View.OnClickListener() {
-            public void onClick(View v) {
-
-                HomeActivity parent = (HomeActivity) getActivity();
-
-                parent.initialize(true);
-            }
-        });
-
         this.recyclerView.setAdapter(this.adapter);
         this.recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
         return v;
