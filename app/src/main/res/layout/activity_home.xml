@@ -18,12 +18,26 @@
         >
 
         <!-- Toolbar -->
+
         <androidx.appcompat.widget.Toolbar
             android:id="@+id/activity_main_toolbar"
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
-            android:background="?attr/colorPrimary"
-         />
+            android:background="?attr/colorPrimary">
+
+            <TextView
+                android:id="@+id/nameFor"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="right"
+                android:layout_marginEnd="16dp"
+                android:textColor="#FFFFFF"
+                android:textSize="15dp"
+                android:textStyle="bold" />
+            
+        </androidx.appcompat.widget.Toolbar>
+
+
 
         <!-- FrameLayout for our fragments -->
 
@@ -41,6 +55,7 @@
         android:layout_height="match_parent"
         android:layout_gravity="start"
         android:fitsSystemWindows="true"
+        app:itemTextColor="#FFFFFF"
         app:menu="@layout/activity_home_menu_drawer" />
 
 </androidx.drawerlayout.widget.DrawerLayout>
