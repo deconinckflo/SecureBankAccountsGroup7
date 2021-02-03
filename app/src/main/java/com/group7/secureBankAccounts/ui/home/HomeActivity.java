@@ -58,8 +58,13 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
 
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        initialize(false);
 
 
+    }
+
+
+    public void initialize(Boolean isRefresh){
         final ProgressDialog dialog = ProgressDialog.show(this, "Loading", "Please wait...", true);
 
 
@@ -95,9 +100,12 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
                         Intent intent = getIntent();
                         Users user = new Users(intent.getStringExtra("firstName"),intent.getStringExtra("lastName"),intent.getIntExtra("id",0),allBankAccount);
 
+
                         setUser(user);
 
-                        setupFragment();
+                        if(!isRefresh){
+                            setupFragment();
+                        }
                         dialog.cancel();
 
                     } else {
@@ -111,10 +119,6 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
                 }
             });
         });
-
-
-
-
     }
 
     public void setupFragment(){
@@ -159,6 +163,7 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
                 this.fragmentTransfer = new TransferFragment();
             }
             if (!this.fragmentTransfer.isVisible()){
+                this.fragmentTransfer.setArguments(args);
                 getSupportFragmentManager().beginTransaction()
                         .replace(R.id.activity_main_frame_layout, this.fragmentTransfer).commit();
             }
@@ -179,5 +184,9 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
 
     public void setUser(Users user) {
         this.user = user;
+    }
+
+    public Users getUser() {
+        return user;
     }
 }
