@@ -16,9 +16,9 @@ public class AllAccountViewHolder extends RecyclerView.ViewHolder {
     public AllAccountViewHolder(@NonNull View itemView) {
 
         super(itemView);
-        this.name = itemView.findViewById(R.id.fragment_main_account_name);
-        this.iban = itemView.findViewById(R.id.fragment_main_iban);
-        this.amount = itemView.findViewById(R.id.fragment_main_amount);
+        this.name = itemView.findViewById(R.id.accountNameFor);
+        this.iban = itemView.findViewById(R.id.ibanFor);
+        this.amount = itemView.findViewById(R.id.amountFor);
     }
 
     public void update(BankAccount bank){

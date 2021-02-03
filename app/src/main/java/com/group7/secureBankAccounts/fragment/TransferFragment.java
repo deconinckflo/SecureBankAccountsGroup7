@@ -4,22 +4,33 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ArrayAdapter;
+import android.widget.AdapterView;
 import android.widget.Spinner;
+import android.widget.TextView;
 
 import androidx.fragment.app.Fragment;
 
 import com.group7.secureBankAccounts.R;
 import com.group7.secureBankAccounts.data.model.BankAccount;
+import com.group7.secureBankAccounts.data.model.SpinnerAdapter;
 import com.group7.secureBankAccounts.data.model.Users;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class TransferFragment extends Fragment {
 
-    private Spinner spinnerBankSince;
+    private Spinner spinnerBankFrom;
     private Spinner spinnerBankFor;
+    private SpinnerAdapter adapter;
+
+
+    private TextView nameFor;
+    private TextView ibanFor;
+    private TextView amountFor;
+
+    private TextView nameFrom;
+    private TextView ibanFrom;
+    private TextView amountFrom;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -28,19 +39,55 @@ public class TransferFragment extends Fragment {
         Bundle args = getArguments();
         Users user = (Users) args.getSerializable("User");
         
-        spinnerBankSince = v.findViewById(R.id.spinnerBankSince);
+        spinnerBankFrom = v.findViewById(R.id.spinnerBankFrom);
         spinnerBankFor = v.findViewById(R.id.spinnerBankFor);
 
-        List<String> items = new ArrayList<>();
-        for (BankAccount bank : user.getAllBankAccount()){
-            items.add(bank.getAccount_name());
-        }
+        List<BankAccount> items = user.getAllBankAccount();
         
         
-        ArrayAdapter<String> adapter = new ArrayAdapter<String>(getContext(), android.R.layout.simple_spinner_dropdown_item, items);
+        adapter = new SpinnerAdapter(getContext(), android.R.layout.simple_spinner_dropdown_item, items);
 
-        spinnerBankSince.setAdapter(adapter);
+
+        this.nameFor = v.findViewById(R.id.accountNameFor);
+        this.ibanFor = v.findViewById(R.id.ibanFor);
+        this.amountFor = v.findViewById(R.id.amountFor);
+
+        this.nameFrom = v.findViewById(R.id.accountNameFrom);
+        this.ibanFrom = v.findViewById(R.id.ibanFrom);
+        this.amountFrom = v.findViewById(R.id.amountFrom);
+
+
+        spinnerBankFrom.setAdapter(adapter);
         spinnerBankFor.setAdapter(adapter);
+
+
+        spinnerBankFrom.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+
+            @Override
+            public void onItemSelected(AdapterView<?> adapterView, View view, int position, long id) {
+                BankAccount bank = adapter.getItem(position);
+                nameFrom.setText(bank.getAccount_name());
+                amountFrom.setText(String.valueOf(bank.getAmount()) + " " + bank.getCurrency());
+                ibanFrom.setText(bank.getIban());
+            }
+            @Override
+            public void onNothingSelected(AdapterView<?> adapter) {  }
+        });
+
+        spinnerBankFor.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+
+            @Override
+            public void onItemSelected(AdapterView<?> adapterView, View view, int position, long id) {
+                BankAccount bank = adapter.getItem(position);
+                nameFor.setText(bank.getAccount_name());
+                amountFor.setText(String.valueOf(bank.getAmount()) + " " + bank.getCurrency());
+                ibanFor.setText(bank.getIban());
+            }
+            @Override
+            public void onNothingSelected(AdapterView<?> adapter) {  }
+        });
+
+
         return v;
     }
 }
