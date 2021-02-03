@@ -33,7 +33,7 @@ public class AllAccountAdapter extends RecyclerView.Adapter<AllAccountViewHolder
 
 
     public void setAllBankAccount(List<BankAccount> allBankAccount){
-        allBankAccount = allBankAccount;
+        this.allBankAccount = allBankAccount;
 
     }
 
