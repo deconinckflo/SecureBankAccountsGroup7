@@ -8,6 +8,7 @@ import android.widget.AdapterView;
 import android.widget.Spinner;
 import android.widget.TextView;
 
+import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
 
 import com.group7.secureBankAccounts.R;
@@ -68,6 +69,15 @@ public class TransferFragment extends Fragment {
                 BankAccount bank = adapter.getItem(position);
                 nameFrom.setText(bank.getAccount_name());
                 amountFrom.setText(String.valueOf(bank.getAmount()) + " " + bank.getCurrency());
+
+                if(bank.getAmount() >=0){
+
+                    amountFrom.setTextColor(ContextCompat.getColor(getContext(),R.color.green));
+                }
+                else{
+                    amountFrom.setTextColor(ContextCompat.getColor(getContext(),R.color.red));
+                }
+
                 ibanFrom.setText(bank.getIban());
             }
             @Override
@@ -81,6 +91,16 @@ public class TransferFragment extends Fragment {
                 BankAccount bank = adapter.getItem(position);
                 nameFor.setText(bank.getAccount_name());
                 amountFor.setText(String.valueOf(bank.getAmount()) + " " + bank.getCurrency());
+
+                if(bank.getAmount() >=0){
+
+                    amountFor.setTextColor(ContextCompat.getColor(getContext(),R.color.green));
+                }
+                else{
+                    amountFor.setTextColor(ContextCompat.getColor(getContext(),R.color.red));
+                }
+
+
                 ibanFor.setText(bank.getIban());
             }
             @Override
