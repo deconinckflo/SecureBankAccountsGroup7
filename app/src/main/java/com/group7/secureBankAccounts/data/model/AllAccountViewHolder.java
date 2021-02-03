@@ -10,6 +10,8 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.group7.secureBankAccounts.R;
 
+import java.math.BigDecimal;
+
 public class AllAccountViewHolder extends RecyclerView.ViewHolder {
     TextView name;
     TextView amount;
@@ -27,7 +29,7 @@ public class AllAccountViewHolder extends RecyclerView.ViewHolder {
     public void update(Context c, BankAccount bank){
         this.name.setText(bank.getAccount_name());
         this.amount.setText(String.valueOf(bank.getAmount()) + " " + bank.getCurrency());
-        if(bank.getAmount() >=0){
+        if(bank.getAmount().compareTo(BigDecimal.ZERO) >=0){
             amount.setTextColor(ContextCompat.getColor(c,R.color.green));
         }
         else{
