@@ -5,6 +5,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
+import android.widget.Button;
 import android.widget.Spinner;
 import android.widget.TextView;
 
@@ -33,6 +34,11 @@ public class TransferFragment extends Fragment {
     private TextView ibanFrom;
     private TextView amountFrom;
 
+    private Button buttonTransfer;
+
+    private BankAccount bankAccountFor;
+    private BankAccount bankAccountFrom;
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View v = inflater.inflate(R.layout.fragment_transfer, container, false);
@@ -44,8 +50,16 @@ public class TransferFragment extends Fragment {
         spinnerBankFor = v.findViewById(R.id.spinnerBankFor);
 
         List<BankAccount> items = user.getAllBankAccount();
-        
-        
+
+        this.buttonTransfer = v.findViewById(R.id.buttonTransfer);
+        buttonTransfer.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+            }
+        });
+
+
         adapter = new SpinnerAdapter(getContext(), android.R.layout.simple_spinner_dropdown_item, items);
 
 
@@ -79,6 +93,7 @@ public class TransferFragment extends Fragment {
                 }
 
                 ibanFrom.setText(bank.getIban());
+                bankAccountFrom = bank;
             }
             @Override
             public void onNothingSelected(AdapterView<?> adapter) {  }
@@ -102,6 +117,7 @@ public class TransferFragment extends Fragment {
 
 
                 ibanFor.setText(bank.getIban());
+                bankAccountFor = bank;
             }
             @Override
             public void onNothingSelected(AdapterView<?> adapter) {  }
@@ -110,4 +126,6 @@ public class TransferFragment extends Fragment {
 
         return v;
     }
+
+
 }
