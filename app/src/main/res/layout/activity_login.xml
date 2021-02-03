@@ -22,7 +22,6 @@
         android:hint="@string/prompt_firstName"
         android:inputType="textEmailAddress"
         android:selectAllOnFocus="true"
-        android:text="Destini"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/imageView" />
@@ -37,7 +36,6 @@
         android:hint="@string/prompt_lastName"
         android:inputType="textEmailAddress"
         android:selectAllOnFocus="true"
-        android:text="Dickens"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/firstNameText" />
@@ -55,7 +53,6 @@
         android:imeOptions="actionDone"
         android:inputType="textPassword"
         android:selectAllOnFocus="true"
-        android:text="bonjour"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
