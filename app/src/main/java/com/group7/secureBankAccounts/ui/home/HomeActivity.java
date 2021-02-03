@@ -1,12 +1,14 @@
 package com.group7.secureBankAccounts.ui.home;
 
 
+import android.app.Activity;
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.MenuItem;
+import android.widget.TextView;
 
 
 import androidx.annotation.NonNull;
@@ -52,6 +54,7 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
     private Fragment fragmentAllAccount;
 
     private Users user;
+    private TextView name;
 
 
 
@@ -125,7 +128,8 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
 
         setContentView(R.layout.activity_home);
         this.toolbar = (Toolbar) findViewById(R.id.activity_main_toolbar);
-
+        this.name = findViewById(R.id.nameFor);
+        this.name.setText(this.user.getUserName() + " " + this.user.getLastName());
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayShowTitleEnabled(false);
         this.drawerLayout = (DrawerLayout) findViewById(R.id.activity_main_drawer_layout);

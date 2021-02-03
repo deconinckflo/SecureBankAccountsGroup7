@@ -16,6 +16,7 @@ public class AllAccountAdapter extends RecyclerView.Adapter<AllAccountViewHolder
 
 
     private List<BankAccount> allBankAccount;
+    private Context c;
 
     public AllAccountAdapter(List<BankAccount> allBankAccount) {
         this.allBankAccount = allBankAccount;
@@ -24,15 +25,15 @@ public class AllAccountAdapter extends RecyclerView.Adapter<AllAccountViewHolder
     @NonNull
     @Override
     public AllAccountViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        Context context = parent.getContext();
-        LayoutInflater inflater = LayoutInflater.from(context);
+        c = parent.getContext();
+        LayoutInflater inflater = LayoutInflater.from(c);
         View view = inflater.inflate(R.layout.fragment_recycler_view_all_account, parent, false);
         return new AllAccountViewHolder(view);
     }
 
     @Override
     public void onBindViewHolder(@NonNull AllAccountViewHolder holder, int position) {
-        holder.update(this.allBankAccount.get(position));
+        holder.update(c,this.allBankAccount.get(position));
     }
 
     @Override
