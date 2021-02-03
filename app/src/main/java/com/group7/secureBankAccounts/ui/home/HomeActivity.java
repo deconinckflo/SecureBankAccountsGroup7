@@ -6,8 +6,11 @@ import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.text.Layout;
 import android.util.Log;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.Button;
 import android.widget.TextView;
 
 
@@ -16,6 +19,7 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
+import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.fragment.app.Fragment;
@@ -27,6 +31,7 @@ import com.google.gson.JsonObject;
 import com.group7.secureBankAccounts.ApiRequest.Api;
 import com.group7.secureBankAccounts.ApiRequest.ApiInterface;
 import com.group7.secureBankAccounts.R;
+import com.group7.secureBankAccounts.data.model.AllAccountAdapter;
 import com.group7.secureBankAccounts.data.model.BankAccount;
 import com.group7.secureBankAccounts.data.model.Users;
 import com.group7.secureBankAccounts.fragment.AllAccountFragment;
@@ -51,12 +56,12 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
     private NavigationView navigationView;
 
     private Fragment fragmentTransfer;
-    private Fragment fragmentAllAccount;
+    private AllAccountFragment fragmentAllAccount;
 
     private Users user;
     private TextView name;
 
-
+    private Button buttonRefresh;
 
 
     public void onCreate(Bundle savedInstanceState) {
@@ -109,6 +114,12 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
                         if(!isRefresh){
                             setupFragment();
                         }
+                        else{
+                            Bundle args = new Bundle();
+                            args.putSerializable("User",user);
+                            fragmentAllAccount.refresh(user);
+
+                        }
                         dialog.cancel();
 
                     } else {
@@ -127,10 +138,22 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
     public void setupFragment(){
 
         setContentView(R.layout.activity_home);
+        buttonRefresh=findViewById(R.id.buttonRefresh);
+
+        buttonRefresh.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                initialize(true);
+
+            }
+        });
+
         this.toolbar = (Toolbar) findViewById(R.id.activity_main_toolbar);
         this.name = findViewById(R.id.nameFor);
         this.name.setText(this.user.getUserName() + " " + this.user.getLastName());
         setSupportActionBar(toolbar);
+
+
         getSupportActionBar().setDisplayShowTitleEnabled(false);
         this.drawerLayout = (DrawerLayout) findViewById(R.id.activity_main_drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(this, drawerLayout, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
@@ -163,6 +186,7 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
         Bundle args = new Bundle();
         args.putSerializable("User",this.user);
         if (id == R.id.fragment_transfer) {
+            buttonRefresh.setVisibility(View.GONE);
             if (this.fragmentTransfer == null) {
                 this.fragmentTransfer = new TransferFragment();
             }
@@ -177,7 +201,7 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
                 this.fragmentAllAccount = new AllAccountFragment();
             }
             if (!this.fragmentAllAccount.isVisible()){
-
+                buttonRefresh.setVisibility(View.VISIBLE);
                 this.fragmentAllAccount.setArguments(args);
                 getSupportFragmentManager().beginTransaction()
                         .replace(R.id.activity_main_frame_layout, this.fragmentAllAccount).commit();

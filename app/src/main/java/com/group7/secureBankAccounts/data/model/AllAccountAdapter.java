@@ -31,6 +31,12 @@ public class AllAccountAdapter extends RecyclerView.Adapter<AllAccountViewHolder
         return new AllAccountViewHolder(view);
     }
 
+
+    public void setAllBankAccount(List<BankAccount> allBankAccount){
+        allBankAccount = allBankAccount;
+
+    }
+
     @Override
     public void onBindViewHolder(@NonNull AllAccountViewHolder holder, int position) {
         holder.update(c,this.allBankAccount.get(position));
