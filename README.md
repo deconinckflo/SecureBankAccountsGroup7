@@ -23,8 +23,12 @@ We used enigma plugin to encrypt strings in the source code. If the attacker try
 
 ![ACCOUNTS ACTIVITY](/images/2.PNG)
 
+**Menu :**
+![MENU](/images/3.PNG)
+
 **Make a transfer page :**
 
 ![TRANSFER PAGE](/images/4.PNG)
+![MAKING TRANSFER](/images/5.PNG)
 ![TRANSFER DONE](/images/6.PNG)
 
