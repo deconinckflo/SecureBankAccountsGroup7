@@ -15,13 +15,16 @@ We used enigma plugin to encrypt strings in the source code. If the attacker try
 
 ## Question 4 : Screenshots of the app
 
-Login screen :
-[LOGIN ACTIVITY](/images/1.PNG)
+**Login screen :**
 
-User's accounts page :
-[ACCOUNTS ACTIVITY](/images/2.PNG)
+![LOGIN ACTIVITY](/images/1.PNG)
 
-Make a transfer page :
-[TRANSFER PAGE](/images/4.PNG)
-[TRANSFER DONE](/images/6.PNG)
+**User's accounts page :**
+
+![ACCOUNTS ACTIVITY](/images/2.PNG)
+
+**Make a transfer page :**
+
+![TRANSFER PAGE](/images/4.PNG)
+![TRANSFER DONE](/images/6.PNG)
 
