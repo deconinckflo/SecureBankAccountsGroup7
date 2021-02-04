@@ -24,6 +24,7 @@ We used enigma plugin to encrypt strings in the source code. If the attacker try
 ![ACCOUNTS ACTIVITY](/images/2.PNG)
 
 **Menu :**
+
 ![MENU](/images/3.PNG)
 
 **Make a transfer page :**
